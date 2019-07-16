@@ -1,0 +1,20 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cucumber-js --world-parameters \"{\\\"headless\\\": false}\"",
+    "test": "cucumber-js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber": "^5.1.0",
+    "puppeteer": "^1.18.1"
+  },
+  "dependencies": {
+    "npm": "^6.10.1"
+  }
+}
