@@ -17,6 +17,10 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
+# Test result directory
+/test/reports
+/test/screenshots
+
 # nyc test coverage
 .nyc_output
 
@@ -59,4 +63,13 @@ typings/
 
 # next.js build output
 .next
-/.idea/
+
+# IntelliJ project files
+.idea
+
+# vscode project files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

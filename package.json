@@ -10,11 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "cucumber": "^5.1.0",
-    "puppeteer": "^1.18.1"
-  },
   "dependencies": {
-    "npm": "^6.10.1"
+    "cucumber": "^5.1.0",
+    "dotenv": "^8.0.0",
+    "puppeteer": "^1.18.1"
   }
 }

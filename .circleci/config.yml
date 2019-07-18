@@ -25,9 +25,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: npm install
       # TODO - get this cached so that you don't have to pull down the binaries each time
@@ -55,5 +55,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: mkdir -p /test/results
+      - run: mkdir -p /test/screenshots
+      - store_test_results:
+          path: /test/results
+      - store_artifacts:
+        path: /test/results
+        destination: results
       # run tests!
       - run: npm test

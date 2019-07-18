@@ -5,10 +5,10 @@
 const { After, AfterAll, Before, BeforeAll, Status, defineParameterType, setDefaultTimeout, setWorldConstructor } = require('cucumber');
 const FeatureScope = require('./scope/FeatureScope');
 const BrowserScope = require('./scope/BrowserScope');
-// const { createFolder } = require('./util/FileSystem');
-//
-// // Process .env file
-// require('dotenv').config()
+const { createFolder } = require('./util/FileSystem');
+
+// Process .env file
+require('dotenv').config();
 
 // Timeout, in milliseconds, for puppeteer actions
 setDefaultTimeout(30 * 1000);
@@ -45,20 +45,19 @@ const config = {
 };
 
 // Create required folders
-BeforeAll(async function(){
-    // await createFolder(`${config.reportPath}`);
-    // await createFolder(`${config.screenshotPath}/compare`);
-    // await createFolder(`${config.screenshotPath}/diff`);
-    // await createFolder(`${config.screenshotPath}/error`);
-    // await createFolder(`${config.screenshotPath}/ref`);
+BeforeAll(async function () {
+    await createFolder(`${config.reportPath}`);
+    await createFolder(`${config.screenshotPath}/compare`);
+    await createFolder(`${config.screenshotPath}/diff`);
+    await createFolder(`${config.screenshotPath}/error`);
+    await createFolder(`${config.screenshotPath}/ref`);
 });
 
-
 // Use the same BrowserScope object for each scenario in a feature
-Before(async function(scenario) {
+Before(async function (scenario) {
     // Check if the current scenario is in the same feature test
     const currentFeature = scenario.sourceLocation.uri;
-    if(featureScope.isNewFeature(currentFeature)) await featureScope.init(currentFeature, this.worldParameters);
+    if (featureScope.isNewFeature(currentFeature)) await featureScope.init(currentFeature, this.worldParameters);
 
     this.page = featureScope.browserScope.page;
     this.browser = featureScope.browserScope.browser;
@@ -66,11 +65,11 @@ Before(async function(scenario) {
 });
 
 // After hook for each scenario
-After(async function(scenario){
+After(async function (scenario) {
     featureScope.browserScope = this;
 
     // Take a screenshot if a scenario fails
-    if(scenario.result.status === Status.FAILED) {
+    if (scenario.result.status === Status.FAILED) {
         const screenShotName = scenario.pickle.name.replace(/[\W_]+/g, '-');
         await this.page.screenshot({
             path: `${config.screenshotPath}/error/${screenShotName}.png`
@@ -79,6 +78,6 @@ After(async function(scenario){
 });
 
 // After all feature tests are complete
-AfterAll(async function() {
+AfterAll(async function () {
     await featureScope.browserScope.close();
 });
