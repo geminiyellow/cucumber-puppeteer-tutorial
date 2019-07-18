@@ -39,7 +39,7 @@ const config = {
     // Root URL to prepend to URLs when using action/openUrl.js with a URL that doesn't include the http(s) protocol
     rootUrl: process.env.ROOT_URL ? process.env.ROOT_URL : '',
 
-    // Path used by checkScreenshot visual regression tests to save and compare screenshotss
+    // Path used by checkScreenShot visual regression tests to save and compare screenshotss
     // Defaults to /test/screenshots if a SCREENSHOT_PATH environment variable isn't pressent.
     screenshotPath: process.env.SCREENSHOT_PATH ? process.env.SCREENSHOT_PATH : './test/screenshots'
 };

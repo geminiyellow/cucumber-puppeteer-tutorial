@@ -55,12 +55,13 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: mkdir -p /test/results
-      - run: mkdir -p /test/screenshots
-      - store_test_results:
-          path: /test/results
-      - store_artifacts:
-        path: /test/results
-        destination: results
-      # run tests!
+      - run:
+          name: Setup the Path used to save generated test reports/screenshot
+          command: |
+            echo 'export REPORT_PATH="./e2e/reports"' >> $BASH_ENV
+            echo 'export SCREENSHOT_PATH="./e2e/screenshots"' >> $BASH_ENV
       - run: npm test
+      - store_test_results:
+          path: e2e
+      - store_artifacts:
+          path: e2e
