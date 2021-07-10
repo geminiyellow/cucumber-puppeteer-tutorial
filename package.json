@@ -1,0 +1,19 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cucumber-js --world-parameters \"{\\\"headless\\\": false}\"",
+    "test": "cucumber-js",
+    "docker": "docker-compose run --rm --entrypoint /bin/sh puppeteer"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cucumber": "^5.1.0",
+    "dotenv": "^8.0.0",
+    "puppeteer": "^1.18.1"
+  }
+}

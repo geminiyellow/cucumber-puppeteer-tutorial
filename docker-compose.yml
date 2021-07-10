@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  puppeteer:
+    build: .
+    image: puppeteer-chrome-linux
+    container_name: puppeteer-chrome
+
+    tty: true
+    init: true
+    stdin_open: true
+
+    working_dir: /app
+    volumes:
+      - .:/app
+    cap_add: 
+      - SYS_ADMIN
